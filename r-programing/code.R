@@ -85,4 +85,5 @@ logit_model <- train(diabetes ~ age + glucose + pressure,
                      trControl = ctrl)
 
 logit_model
-
+logit_model$finalModel #final model
+##parametric model 
