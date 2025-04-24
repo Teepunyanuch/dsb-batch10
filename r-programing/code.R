@@ -43,3 +43,46 @@ knn <- train(mpg ~ .,
              ##ask pro grame to random K
              tuneLength = 4)
 knn
+
+##################################
+data("PimaIndiansDiabetes")
+View(PimaIndiansDiabetes)
+
+df <- PimaIndiansDiabetes
+
+#CHECK/ INSPECT DATA
+
+sum(complete.cases(df))
+nrow(df)
+
+mean(complete.cases(df)) == 1
+
+#check colume name
+glimpse(df)
+
+
+#check statistic
+df |>
+  select(age, diabetes) |>
+  group_by(diabetes) |>
+  summarise(avg_age = mean(age, na.rm=TRUE),
+            median_age = median(age))
+
+
+#assume split data done
+
+##logistic reggresstion model
+
+
+set.seed(42)
+
+ctrl <- trainControl(method = "cv",
+                     number = 5)
+
+logit_model <- train(diabetes ~ age + glucose + pressure,
+                     data = df,
+                     method = "glm",
+                     trControl = ctrl)
+
+logit_model
+
