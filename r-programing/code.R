@@ -87,3 +87,17 @@ logit_model <- train(diabetes ~ age + glucose + pressure,
 logit_model
 logit_model$finalModel #final model
 ##parametric model 
+
+
+##variable importance
+varImp(logit_model)
+
+
+##regression => high bias
+##data change => model doesn't change that much
+
+##save model .RDS
+saveRDS(logit_model, "logistic_reg.RDS")
+
+##Friends computer
+model <- readRDS("logistic_reg.RDS")
